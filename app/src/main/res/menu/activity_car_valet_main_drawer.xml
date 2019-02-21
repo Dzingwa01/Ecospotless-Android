@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_previous"
+            android:icon="@drawable/ic_baseline_history_24px"
+            android:title="Previous Requests" />
+        <item
+            android:id="@+id/nav_profile"
+            android:icon="@drawable/ic_baseline_account_circle_24px"
+            android:title="My Profile" />
+    </group>
+
+    <item android:title="Extras">
+        <menu>
+            <item
+                android:id="@+id/nav_share_admin"
+                android:icon="@drawable/ic_baseline_settings_20px"
+                android:title="Settings"/>
+            <item
+                android:id="@+id/nav_help_admin"
+                android:icon="@drawable/ic_baseline_help_outline_24px"
+                android:title="Help"/>
+            <item
+                android:id="@+id/nav_about_admin"
+                android:icon="@drawable/ic_baseline_info_24px"
+                android:title="About Ecospotless"/>
+            <item
+                android:id="@+id/nav_logout_valet"
+                android:icon="@drawable/ic_baseline_lock_24px"
+                android:title="Logout"/>
+        </menu>
+    </item>
+
+</menu>

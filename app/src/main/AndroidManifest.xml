@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.marshteq.ecospotless">
+    <!-- To auto-complete the email text field in the login form with the user's emails -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.READ_PROFILE" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <uses-feature android:name="android.hardware.camera" />
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".Client.HelpActivity"
+            android:label="@string/title_activity_help"
+            android:parentActivityName=".Client.ClientMainActivity"
+            >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.marshteq.ecospotless.Client.ClientMainActivity" />
+        </activity>
+        <activity
+            android:name=".Client.AboutEcospotlessActivity"
+            android:label="@string/title_activity_about_ecospotless"
+            android:parentActivityName=".Client.ClientMainActivity"
+            >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.marshteq.ecospotless.Client.ClientMainActivity" />
+        </activity>
+        <activity
+            android:name=".Client.SettingsActivity"
+            android:label="@string/title_activity_settings"
+            android:parentActivityName=".Client.ClientMainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.marshteq.ecospotless.Client.ClientMainActivity" />
+        </activity>
+        <activity
+            android:name=".Client.WashRequestActivity"
+            android:label="@string/title_activity_wash_request"
+            android:parentActivityName=".Client.ClientMainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.marshteq.ecospotless.Client.ClientMainActivity" />
+        </activity>
+        <activity
+            android:name=".Franchisee.FranchiseeMainActivity"
+            android:label="@string/title_activity_franchisee_main"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".CarValet.CarValetMainActivity"
+            android:label="@string/title_activity_car_valet_main"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Client.ClientMainActivity"
+            android:label="@string/title_activity_client_main"
+            android:parentActivityName=".LoginActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.marshteq.ecospotless.LoginActivity" />
+        </activity>
+        <activity android:name=".Register">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.marshteq.ecospotless.Register" />
+        </activity>
+        <activity
+            android:name=".LoginActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.Launcher">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".LandingScreen"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
+
+
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- </intent-filter> -->
+        </activity>
+    </application>
+
+</manifest>
