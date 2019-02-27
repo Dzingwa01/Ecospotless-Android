@@ -41,6 +41,6 @@ public class Register extends AppCompatActivity {
 //
 //        // attaching data adapter to spinner
 //        spinner.setAdapter(dataAdapter);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
     }
 }

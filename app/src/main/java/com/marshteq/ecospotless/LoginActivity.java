@@ -125,28 +125,32 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 startActivity(intent);
             }
         });
+        try{
+            if (sp.getBoolean("logged", true) && !sp.getString("user_name", null).equals("user_name")) {
+                Log.d("logged", "Yes Loggein");
+                if(sp.getString("role","null").equals("app-admin")){
+                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                    startActivity(intent);
+                }
+                else if(sp.getString("role",null).equals("client")){
+                    Intent intent = new Intent(LoginActivity.this, ClientMainActivity.class);
+                    startActivity(intent);
+                }else if(sp.getString("role",null).equals("car-valet")){
+                    Intent intent = new Intent(LoginActivity.this, CarValetMainActivity.class);
+                    startActivity(intent);
+                }else if(sp.getString("role",null).equals("franchisee")){
+                    Intent intent = new Intent(LoginActivity.this, FranchiseeMainActivity.class);
+                    startActivity(intent);
+                }
 
-        if (sp.getBoolean("logged", true) && !sp.getString("user_name", null).equals("user_name")) {
-            Log.d("logged", "Yes Loggein");
-            if(sp.getString("role","null").equals("app-admin")){
-                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                startActivity(intent);
-            }
-            else if(sp.getString("role",null).equals("client")){
-                Intent intent = new Intent(LoginActivity.this, ClientMainActivity.class);
-                startActivity(intent);
-            }else if(sp.getString("role",null).equals("car-valet")){
-                Intent intent = new Intent(LoginActivity.this, CarValetMainActivity.class);
-                startActivity(intent);
-            }else if(sp.getString("role",null).equals("franchisee")){
-                Intent intent = new Intent(LoginActivity.this, FranchiseeMainActivity.class);
-                startActivity(intent);
-            }
+            } else {
+                Log.d("logged", "No Loggein");
 
-        } else {
-            Log.d("logged", "No Loggein");
+            }
+        }catch(Exception e){
 
         }
+
 
         mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override

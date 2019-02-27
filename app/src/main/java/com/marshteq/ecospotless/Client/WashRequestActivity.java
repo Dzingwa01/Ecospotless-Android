@@ -76,7 +76,7 @@ public class WashRequestActivity extends AppCompatActivity implements DatePicker
     ProgressBar progressBar;
     CoordinatorLayout wash_requests_layout;
     String price_id;
-    String wash_location;
+    EditText wash_location;
     EditText extra_notes;
     Button submit_request;
 
@@ -94,6 +94,8 @@ public class WashRequestActivity extends AppCompatActivity implements DatePicker
         extra_notes = (EditText) findViewById(R.id.extra_notes);
         wash_requests_layout = (CoordinatorLayout) findViewById(R.id.wash_requests_layout);
         submit_request = (Button) findViewById(R.id.submit_request_btn);
+        wash_location = (EditText) findViewById(R.id.address);
+
         final Calendar c = Calendar.getInstance();
 
         int year = c.get(Calendar.YEAR);
@@ -156,7 +158,7 @@ public class WashRequestActivity extends AppCompatActivity implements DatePicker
                 timePickerDialog.show();
             }
         });
-        wash_location = "79 Parliament Street, Central, Port Elizabeth";
+//        wash_location = "79 Parliament Street, Central, Port Elizabeth";
         price_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -177,25 +179,25 @@ public class WashRequestActivity extends AppCompatActivity implements DatePicker
             }
         });
 
-        Places.initialize(getApplicationContext(), API_KEY);
-        PlacesClient placesClient = Places.createClient(this);
-        AutocompleteSupportFragment autocompleteFragment = (AutocompleteSupportFragment)
-                getSupportFragmentManager().findFragmentById(R.id.autocomplete_fragment);
-
-        autocompleteFragment.setPlaceFields(Arrays.asList(Place.Field.ID, Place.Field.NAME));
-        autocompleteFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
-            @Override
-            public void onPlaceSelected(Place place) {
-                // TODO: Get info about the selected place.
-                Log.i("Check Place", "Place: " + place.getName() + ", " + place.getId());
-            }
-
-            @Override
-            public void onError(Status status) {
-                // TODO: Handle the error.
-                Log.i("Check Place", "An error occurred: " + status);
-            }
-        });
+//        Places.initialize(getApplicationContext(), API_KEY);
+//        PlacesClient placesClient = Places.createClient(this);
+//        AutocompleteSupportFragment autocompleteFragment = (AutocompleteSupportFragment)
+//                getSupportFragmentManager().findFragmentById(R.id.autocomplete_fragment);
+//
+//        autocompleteFragment.setPlaceFields(Arrays.asList(Place.Field.ID, Place.Field.NAME));
+//        autocompleteFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
+//            @Override
+//            public void onPlaceSelected(Place place) {
+//                // TODO: Get info about the selected place.
+//                Log.i("Check Place", "Place: " + place.getName() + ", " + place.getId());
+//            }
+//
+//            @Override
+//            public void onError(Status status) {
+//                // TODO: Handle the error.
+//                Log.i("Check Place", "An error occurred: " + status);
+//            }
+//        });
         getServices();
 
     }
@@ -269,7 +271,7 @@ public class WashRequestActivity extends AppCompatActivity implements DatePicker
                 params.put("wash_time", String.valueOf(wash_time_string));
                 params.put("price_id", String.valueOf(price_id));
                 params.put("client_id", pref.id);
-                params.put("wash_location", wash_location);
+                params.put("wash_location", String.valueOf(wash_location.getText()));
                 params.put("extra_notes", String.valueOf(extra_notes.getText()));
                 params.put("status","Pending");
                 return params;

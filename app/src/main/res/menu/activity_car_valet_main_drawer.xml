@@ -5,11 +5,15 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_previous"
-            android:icon="@drawable/ic_baseline_history_24px"
-            android:title="Previous Requests" />
+            android:id="@+id/nav_previous_valet"
+            android:icon="@drawable/ic_baseline_local_car_wash_24px"
+            android:title="Completed Washes" />
         <item
-            android:id="@+id/nav_profile"
+            android:id="@+id/nav_earnings"
+            android:icon="@drawable/ic_baseline_attach_money_24px"
+            android:title="Earnings" />
+        <item
+            android:id="@+id/nav_profile_valet"
             android:icon="@drawable/ic_baseline_account_circle_24px"
             android:title="My Profile" />
     </group>
@@ -17,15 +21,15 @@
     <item android:title="Extras">
         <menu>
             <item
-                android:id="@+id/nav_share_admin"
+                android:id="@+id/nav_settings_valet"
                 android:icon="@drawable/ic_baseline_settings_20px"
                 android:title="Settings"/>
             <item
-                android:id="@+id/nav_help_admin"
+                android:id="@+id/nav_help_valet"
                 android:icon="@drawable/ic_baseline_help_outline_24px"
                 android:title="Help"/>
             <item
-                android:id="@+id/nav_about_admin"
+                android:id="@+id/nav_about_valet"
                 android:icon="@drawable/ic_baseline_info_24px"
                 android:title="About Ecospotless"/>
             <item

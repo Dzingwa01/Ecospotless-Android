@@ -18,6 +18,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.iamhabib.easy_preference.EasyPreference;
+import com.marshteq.ecospotless.CarValet.CarValetMainActivity;
 import com.marshteq.ecospotless.Helpers.Credentials;
 import com.marshteq.ecospotless.Models.UserPref;
 import com.marshteq.ecospotless.Models.WashRequest;
@@ -28,25 +29,25 @@ import org.json.JSONObject;
 
 import java.util.List;
 
-public class WashRequestAdapter extends RecyclerView.Adapter<WashRequestAdapter.ViewHolder> {
+public class ValetWashRequestAdapter extends RecyclerView.Adapter<ValetWashRequestAdapter.ViewHolder> {
     private final List<WashRequest> washRequests;
     Context context;
 
 
-    public WashRequestAdapter(List<WashRequest> washRequests,Context context){
+    public ValetWashRequestAdapter(List<WashRequest> washRequests, Context context){
         this.washRequests = washRequests;
         this.context = context;
     }
 
     @Override
-    public WashRequestAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ValetWashRequestAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.wash_request_row_layout,parent,false);
+                .inflate(R.layout.valet_wash_request_row_layout,parent,false);
             return new ViewHolder(itemView);
     }
 
     @Override
-    public void onBindViewHolder(WashRequestAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(ValetWashRequestAdapter.ViewHolder holder, int position) {
        WashRequest request = washRequests.get(position);
        if(request.id!="empty"){
            holder.service.setText("Requested Service: "+request.price.service);
@@ -88,17 +89,17 @@ public class WashRequestAdapter extends RecyclerView.Adapter<WashRequestAdapter.
         public void onClick(View v) {
             final WashRequest order = washRequests.get(getLayoutPosition());
             AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
-            alertDialogBuilder.setMessage("Do You Want to cancel this request");
-            alertDialogBuilder.setPositiveButton("Yes",
+            alertDialogBuilder.setMessage("Do You Want Accept or Decline Wash Request");
+            alertDialogBuilder.setPositiveButton("Accept",
                     new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface arg0, int arg1) {
 //                                    Toast.makeText(context,"You clicked accept button",Toast.LENGTH_LONG).show();
-                            CancelWashRequest(order);
+                            AcceptWashRequest(order);
                         }
                     });
 
-            alertDialogBuilder.setNegativeButton("No",new DialogInterface.OnClickListener() {
+            alertDialogBuilder.setNegativeButton("Decline",new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
 //                    declineOrder(order);
@@ -111,13 +112,13 @@ public class WashRequestAdapter extends RecyclerView.Adapter<WashRequestAdapter.
         }
     }
 
-    public void CancelWashRequest(final WashRequest order){
+    public void AcceptWashRequest(final WashRequest order){
 
         RequestQueue requestQueue = Volley.newRequestQueue(context);
         Credentials credentials = EasyPreference.with(context).getObject("server_details", Credentials.class);
         UserPref pref = EasyPreference.with(context).getObject("user_pref", UserPref.class);
         final String url = credentials.server_url;
-        String URL = url+"api/cancel-request/"+pref.id+"/"+order.id;
+        String URL = url+"api/accept-request/"+pref.id+"/"+order.id;
 
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, URL, null, new Response.Listener<JSONObject>() {
             @Override
@@ -143,5 +144,4 @@ public class WashRequestAdapter extends RecyclerView.Adapter<WashRequestAdapter.
         requestQueue.add(request);
 
     }
-
 }
